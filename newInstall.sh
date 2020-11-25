@@ -23,7 +23,7 @@ installApache () {
         chmod -R u-w /var/www/html/
         chmod -R g+rx /var/www/html/
 
-        echo "Setup .htaccess rules and a virtual host @ http://inventory";
+        echo "Setup .htaccess rules and a virtual host @ https://bambooworkspace.com";
         cp ./000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
         echo "Restarting Apache.";
@@ -212,6 +212,11 @@ installLaravel () {
         
         cd /var/www/html/
         su - "$SUDO_USER" -c "composer global require laravel/installer"
+	        su - "$SUDO_USER" -c "composer require backpack/crud"
+		su - "$SUDO_USER" -c "composer require backpack/generators --dev"
+		su - "$SUDO_USER" -c "composer require laracasts/generators --dev"
+		su - "$SUDO_USER" -c "php artisan backpack:install"
+"
     fi
 }
 
